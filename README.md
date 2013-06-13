@@ -5,11 +5,7 @@ A grunt task for base64 encoding images in css
 This task converts all image paths in css files with base64 encoded data-uri formatted strings.
 
 
-## Features
-
-* Uses grunt style files interface
-
-## Getting Started
+## How to Use
 
 Install this plugin with the command:
 
