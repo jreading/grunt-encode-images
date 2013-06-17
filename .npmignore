@@ -1,0 +1,5 @@
+.npmignore
+.gitignore
+.travis.yml
+test
+grunt.js
