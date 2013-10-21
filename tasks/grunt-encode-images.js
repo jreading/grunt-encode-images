@@ -17,18 +17,18 @@ module.exports = function(grunt) {
 						return true;
 					}
 				});
+				
+				base64Cnt = 0;
 
 				cssFile = cssFile.replace(/url\(["']?(\S*)\.(png|jpg|jpeg|gif)["']?\)/g, function(match, img, type) {
 					var fileAbs = grunt.file.isPathAbsolute(img);
 					var cssDirs, dirUps, i, base64;
-
-					base64Cnt = 0;
 					
 					if (fileAbs) {
 						destDir = f.dest.split('/')[0];
 					} else {
 						cssDirs = cssFilepath.substr(0,cssFilepath.lastIndexOf('/')).split('/');
-						dirUps = img.match(/(.)\1/g).length;
+						dirUps = img.match(/[^\/](\.[^.\/]*)/g).length;
 						img = img.replace('../','');
 						destDir = '';
 						for (i = 0; i < dirUps; i++) {
@@ -42,6 +42,7 @@ module.exports = function(grunt) {
 						base64 = grunt.file.read(img,{encoding: 'base64'});
 						base64Cnt++;
 						return 'url(data:image/' + (type === 'jpg' ? 'jpeg' : type) + ';base64,' + base64 + ')';
+
 					}
 					catch (e) {
 						grunt.log.warn(img + ' does not exist. Fix: ' + valid);
@@ -49,7 +50,7 @@ module.exports = function(grunt) {
 					}
 				});
 				grunt.file.write(f.dest, cssFile);
-				grunt.log.oklns(f.dest + ' (' + base64Cnt + ' image encoded)');
+				grunt.log.oklns(f.dest + ' - ' + base64Cnt + ' image(s) encoded');
 			});
 
 		} catch (e) {
