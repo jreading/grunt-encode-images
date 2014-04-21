@@ -46,7 +46,6 @@ module.exports = function(grunt) {
 						if (!options.flagged || (options.flagged == 'include' && match.indexOf('#flagged') > -1) || (options.flagged == 'exclude' && match.indexOf('#flagged') == -1)) {
 							base64 = grunt.file.read(img, {encoding: 'base64'});
 							base64Cnt++;
-							grunt.log.warn(match, options.flagged);
 							return 'url(data:image/' + (type === 'jpg' ? 'jpeg' : type) + ';base64,' + base64 + ')';
 						} else {
 							return match;
