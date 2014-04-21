@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 					img = destDir + img + '.' + type;
 
 					try {
-						if (!options.flagged || (options.flagged == 'include' && match.indexOf('#flagged') > -1) || (options.flagged == 'exclude' && match.indexOf('#flagged') == -1)) {
+						if (!options.flagged || (options.flagged === 'include' && match.indexOf('#flagged') > -1) || (options.flagged === 'exclude' && match.indexOf('#flagged') === -1)) {
 							base64 = grunt.file.read(img, {encoding: 'base64'});
 							base64Cnt++;
 							return 'url(data:image/' + (type === 'jpg' ? 'jpeg' : type) + ';base64,' + base64 + ')';
