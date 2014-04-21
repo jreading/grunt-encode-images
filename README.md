@@ -35,6 +35,29 @@ grunt.initConfig({
 });
 ```
 
+Options:
+
+`flagged: exclude|include` will include or exclude a file from encoding. 
+Add target to image path: `url('images/file.png#flagged');`.
+
+```js
+grunt.initConfig({
+ 	encodeImages: {
+ 		options: {
+ 			flagged: 'exclude'
+ 		},
+        build: {
+            files: [{
+                expand: true,
+                cwd: 'build/css/',
+                src: '**/phone.min.css',
+                dest: 'build/css/'
+            }]
+        }
+    }
+});
+```
+
 ## License
 
 The MIT License (MIT)

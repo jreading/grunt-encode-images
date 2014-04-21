@@ -1,8 +1,8 @@
 {
   "name" : "grunt-encode-images",
   "description" : "Grunt task for base64 encoding images as data URIs in css files.",
-  "version" : "0.1.4",
-  "homepage" : "",
+  "version" : "0.2",
+  "homepage" : "https://github.com/jreading/grunt-encode-images",
   "author" : {
     "name" : "John Reading",
     "email" : "john@resonancemultimedia.com",
@@ -24,12 +24,11 @@
     "test": "grunt"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "mocha": "~1.9.0",
-    "grunt-contrib-jshint": "0.1.x"
+    "grunt": "~0.4.4",
+    "grunt-contrib-jshint": "~0.10.0"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.4"
   },
   "keywords" : [
     "grunt", "base64", "encodng", "data URI", "css", "images", "latency", "mobile"

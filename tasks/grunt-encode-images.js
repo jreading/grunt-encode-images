@@ -3,8 +3,12 @@
 module.exports = function(grunt) {
 
 	grunt.task.registerMultiTask('encodeImages', 'Encode css images to base64 data-uri for mobile.', function() {
+
 		try {
 			var destDir, cssFile, cssFilepath, base64Cnt;
+			var options = this.options({
+				flagged: null
+			});
 
 			this.files.forEach(function(f) {
 				var valid = f.src.filter(function(filepath) {
@@ -20,7 +24,7 @@ module.exports = function(grunt) {
 				
 				base64Cnt = 0;
 
-				cssFile = cssFile.replace(/url\(["']?(\S*)\.(png|jpg|jpeg|gif)["']?\)/g, function(match, img, type) {
+				cssFile = cssFile.replace(/url\(["']?(\S*)\.(png|jpg|jpeg|gif)(#flagged)?["']?\)/g, function(match, img, type) {
 					var fileAbs = grunt.file.isPathAbsolute(img);
 					var cssDirs, dirUps, i, base64;
 					
@@ -39,10 +43,15 @@ module.exports = function(grunt) {
 					img = destDir + img + '.' + type;
 
 					try {
-						base64 = grunt.file.read(img,{encoding: 'base64'});
-						base64Cnt++;
-						return 'url(data:image/' + (type === 'jpg' ? 'jpeg' : type) + ';base64,' + base64 + ')';
-
+						if (!options.flagged || (options.flagged == 'include' && match.indexOf('#flagged') > -1) || (options.flagged == 'exclude' && match.indexOf('#flagged') == -1)) {
+							base64 = grunt.file.read(img, {encoding: 'base64'});
+							base64Cnt++;
+							grunt.log.warn(match, options.flagged);
+							return 'url(data:image/' + (type === 'jpg' ? 'jpeg' : type) + ';base64,' + base64 + ')';
+						} else {
+							return match;
+						}
+						
 					}
 					catch (e) {
 						grunt.log.warn(img + ' does not exist. Fix: ' + valid);
