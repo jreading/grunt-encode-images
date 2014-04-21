@@ -1,7 +1,7 @@
 {
   "name" : "grunt-encode-images",
   "description" : "Grunt task for base64 encoding images as data URIs in css files.",
-  "version" : "0.2",
+  "version" : "0.1.5",
   "homepage" : "https://github.com/jreading/grunt-encode-images",
   "author" : {
     "name" : "John Reading",
