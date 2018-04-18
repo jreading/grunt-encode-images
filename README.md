@@ -1,3 +1,6 @@
+# NO LONGER MAINTAINED - USE GULP OR WEBPACK!
+
+
 # grunt-encode-images [![Build Status](https://travis-ci.org/jreading/grunt-encode-images.png?branch=master)](https://travis-ci.org/jreading/grunt-encode-images)
 
 A grunt task for base64 encoding images in css
